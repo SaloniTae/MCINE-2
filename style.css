@@ -256,6 +256,7 @@ nav h3 {
     /* background-color: aliceblue; */
     padding: 4.5vw;
     display: flex;
+    text-align: center;
     align-items: center;
     justify-content: space-between;
     position: relative;
@@ -266,6 +267,7 @@ nav h3 {
     font-size: 4vw;
     width: 60%;
     line-height: 4vw;
+    text-align: center;
 }
 
 #bottom-part2 {
@@ -566,6 +568,7 @@ nav h3 {
         /* background-color: aliceblue; */
         padding: 10vw 4vw;
         display: flex;
+        text-align: center;
         align-items: flex-start;
         justify-content: space-between;
         position: relative;
@@ -577,6 +580,7 @@ nav h3 {
         font-size: 8.2vw;
         width: 100%;
         line-height: 9vw;
+        text-align: center;
     }
 
     #bottom-part2 {
