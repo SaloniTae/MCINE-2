@@ -329,7 +329,86 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-    
+
+     <script>
+  // Initialize thumbnail Swiper
+  var galleryThumbs = new Swiper('.gallery-thumbs', {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    loop: true,
+    freeMode: true,
+    loopedSlides: 5,
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    observer: true,
+    observeParents: true
+  });
+
+  // Initialize main Swiper
+  var galleryTop = new Swiper('.gallery-top', {
+    spaceBetween: 10,
+    loop: true,
+    loopedSlides: 5,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    thumbs: {
+      swiper: galleryThumbs,
+    },
+    autoplay: {
+      delay: 5000, // 5 seconds
+      disableOnInteraction: false
+    },
+    observer: true,
+    observeParents: true
+  });
+
+  // Event listener for slide change
+  galleryTop.on('slideChange', function () {
+    let activeIndex = this.activeIndex;
+    let thumbsSwiper = this.thumbs.swiper;
+    if (thumbsSwiper) {
+      // Remove active class from all thumbs
+      Array.from(thumbsSwiper.slides).forEach(slide => {
+        slide.classList.remove('thumb-active');
+      });
+      // Add active class to current thumb
+      let currentThumb = thumbsSwiper.slides[activeIndex];
+      if (currentThumb) {
+        currentThumb.classList.add('thumb-active');
+      }
+    }
+  });
+
+  // Sync autoplay between main and thumbs galleries
+  galleryTop.on('autoplay', function() {
+    galleryThumbs.autoplay.start();
+  });
+  galleryThumbs.on('autoplay', function() {
+    galleryTop.autoplay.start();
+  });
+</script>
+
+<script>
+  function openMenu() {
+    document.getElementById("overlay").style.height = "100vh";
+    document.getElementById("overlay").style.opacity = "1";
+  }
+
+  function closeMenu() {
+    document.getElementById("overlay").style.height = "0";
+    document.getElementById("overlay").style.opacity = "0";
+  }
+</script>
 </body>
 
 </html>
